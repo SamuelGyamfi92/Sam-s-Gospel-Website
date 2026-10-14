@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sam's Ghanaian gospel music webpage featuring Adom (Grace) by Diana Hamilton.">
+  <title>Adom (Grace) | Sam's Gospel Music Page</title>
+  <style>
+    :root {
+      --night: #1c1822;
+      --plum: #362333;
+      --gold: #f5c96f;
+      --gold-light: #ffe6ae;
+      --cream: #fff9ef;
+      --muted: #d5c8cb;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--cream);
+      background: var(--night);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--gold-light); }
+    .shell { width: min(1050px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      padding: 23px 0;
+    }
+    .brand { letter-spacing: .16em; text-transform: uppercase; font-size: .81rem; font-weight: 800; }
+    .brand span { color: var(--gold); }
+    .topbar a { text-decoration: none; font-size: .86rem; font-weight: 650; }
+    .hero {
+      min-height: 440px; display: grid; align-items: center; position: relative;
+      padding: 75px 0 85px; overflow: hidden;
+      background: radial-gradient(ellipse at 74% 38%, #6b3e48 0%, transparent 43%),
+        radial-gradient(circle at 4% 93%, #3d344a 0%, transparent 50%),
+        linear-gradient(120deg, #211922, #3e263a 66%, #251b2b);
+    }
+    .hero::after {
+      content: "✦"; position: absolute; right: max(7%, calc((100vw - 1050px)/2)); top: 20%;
+      font-size: clamp(130px, 23vw, 310px); line-height: 1; color: rgba(255, 221, 153, .10);
+      transform: rotate(17deg); pointer-events: none;
+    }
+    .eyebrow { margin: 0 0 18px; color: var(--gold-light); text-transform: uppercase; font-size: .78rem; letter-spacing: .23em; font-weight: 750; }
+    h1, h2, .quote { font-family: Georgia, "Times New Roman", serif; }
+    h1 { font-size: clamp(4.3rem, 12vw, 8.2rem); line-height: .99; margin: 0; letter-spacing: -.065em; }
+    h1 span { display: block; color: var(--gold); font-size: clamp(1.5rem, 4vw, 2.8rem); margin: 13px 0 0 6px; letter-spacing: .01em; font-weight: 400; }
+    .hero-desc { max-width: 550px; color: #eee2dc; font-size: 1.08rem; margin: 31px 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 13px 22px; border-radius: 50px; font-weight: 750; font-size: .95rem; text-decoration: none;
+      border: 1px solid var(--gold); cursor: pointer; transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible, a:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+    .btn-primary { color: #291d24; background: var(--gold); }
+    .btn-secondary { background: transparent; color: var(--gold-light); }
+    main { padding: 72px 0 40px; }
+    .section-intro { text-align: center; max-width: 640px; margin: 0 auto 30px; }
+    .section-intro h2 { font-size: clamp(2rem, 4.5vw, 3rem); margin: 0 0 10px; font-weight: 400; }
+    .section-intro p { margin: 0; color: var(--muted); }
+    .video-card { padding: 9px; background: #433440; border: 1px solid #755664; border-radius: 22px; box-shadow: 0 25px 65px rgba(0,0,0,.35); }
+    .video-wrap { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 15px; background: #110e14; }
+    iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .video-meta { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 18px 8px 4px; flex-wrap: wrap; }
+    .video-meta p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .video-meta strong { color: white; }
+    .about { padding: 80px 0 48px; display: grid; gap: 34px; grid-template-columns: 1fr 1fr; align-items: center; }
+    .about h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: normal; line-height: 1.15; margin: 0 0 18px; }
+    .about p { color: var(--muted); margin: 0 0 15px; }
+    .quote-panel {
+      padding: 35px; border-radius: 20px; background: #342730; border: 1px solid #725260;
+      position: relative; overflow: hidden;
+    }
+    .quote-panel::before { content: "✧"; position: absolute; top: -40px; right: 15px; font-size: 155px; color: #745b5c; opacity: .32; }
+    .quote { font-size: clamp(1.6rem, 3vw, 2.45rem); position: relative; line-height: 1.35; margin: 0; }
+    .quote-panel small { display: block; color: var(--gold); margin-top: 16px; font-weight: 750; letter-spacing: .06em; }
+    footer { border-top: 1px solid #4b3949; padding: 24px 0 34px; color: var(--muted); text-align: center; font-size: .86rem; }
+    footer p { margin: 0; }
+    .note {
+      position: fixed; z-index: 100; bottom: -70px; pointer-events: none;
+      animation: floatNote var(--duration, 4s) ease-out forwards;
+      color: var(--gold); font-size: var(--note-size, 32px);
+      text-shadow: 0 8px 20px #161016;
+    }
+    @keyframes floatNote {
+      0%   { opacity: 0; transform: translate(0,0) rotate(-18deg) scale(.7); }
+      15%  { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { opacity: 0; transform: translate(var(--drift, 0px), -110vh) rotate(38deg) scale(1.4); }
+    }
+    .greeting { margin: 18px 0 0; color: var(--gold-light); min-height: 1.5em; font-weight: 600; }
+    @media (max-width: 720px) {
+      .hero { min-height: auto; padding: 58px 0 72px; }
+      main { padding-top: 45px; }
+      .about { grid-template-columns: 1fr; padding-top: 62px; }
+      .quote-panel { padding: 27px; }
+      .video-meta { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .note { animation: none; display: none; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <div class="brand">SAM'S <span>GOSPEL</span> CORNER</div>
+    <a href="#music">Listen to the song ↓</a>
+  </header>
+
+  <section class="hero" aria-labelledby="song-title">
+    <div class="shell">
+      <p class="eyebrow">Ghanaian Gospel • Diana Hamilton</p>
+      <h1 id="song-title">Adom<span>(Grace)</span></h1>
+      <p class="hero-desc">A celebration of faith, hope and gratitude. Discover the uplifting Ghanaian gospel song “Adom” by Diana Hamilton.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#music">▶ Watch the video</a>
+        <button class="btn btn-secondary" id="celebrate" type="button">♫ Celebrate grace</button>
+      </div>
+      <p class="greeting" id="greeting" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <main class="shell">
+    <section id="music" aria-labelledby="music-heading">
+      <div class="section-intro">
+        <p class="eyebrow">The featured song</p>
+        <h2 id="music-heading">Listen to Adom</h2>
+        <p>Watch the official music video from Diana Hamilton's YouTube channel.</p>
+      </div>
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/i0sF0bTgh7M"
+            title="Diana Hamilton - ADOM (Grace) Official Music Video"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <p><strong>Adom (Grace)</strong> · Diana Hamilton · Gospel music from Ghana</p>
+          <a href="https://www.youtube.com/watch?v=i0sF0bTgh7M" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" aria-labelledby="about-heading">
+      <div>
+        <p class="eyebrow">The meaning behind the music</p>
+        <h2 id="about-heading">Grace is the heart of this song.</h2>
+        <p>“Adom” means “grace” in Twi, a language widely spoken in Ghana. This song expresses gratitude to God for the strength, mercy and hope that carry us through life.</p>
+        <p>I chose this song because Ghanaian gospel music brings together powerful voices, joyful melodies and an encouraging message.</p>
+      </div>
+      <aside class="quote-panel" aria-label="Message of the page">
+        <p class="quote">“Every day is another opportunity to be thankful.”</p>
+        <small>A MESSAGE OF GRATITUDE</small>
+      </aside>
+    </section>
+  </main>
+
+  <footer><div class="shell"><p>Made by Sam · A favourite Ghanaian gospel song · Created with HTML, CSS &amp; JavaScript</p></div></footer>
+
+  <script>
+    // JavaScript animation for the assignment: click the button to make musical notes float up the page.
+    const celebrateButton = document.getElementById('celebrate');
+    const greeting = document.getElementById('greeting');
+    const symbols = ['♪', '♫', '♬', '✦', '♪', '♫'];
+
+    celebrateButton.addEventListener('click', function () {
+      greeting.textContent = 'A little joy, a little music, and plenty of grace! ✨';
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      for (let i = 0; i < 18; i++) {
+        const note = document.createElement('span');
+        note.className = 'note';
+        note.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        note.style.left = (5 + Math.random() * 90) + 'vw';
+        note.style.setProperty('--drift', (Math.random() * 140 - 70) + 'px');
+        note.style.setProperty('--note-size', (25 + Math.random() * 24) + 'px');
+        note.style.setProperty('--duration', (3 + Math.random() * 2) + 's');
+        note.style.animationDelay = (Math.random() * .9) + 's';
+        document.body.appendChild(note);
+        note.addEventListener('animationend', () => note.remove(), { once: true });
+      }
+    });
+  </script>
+</body>
+</html>
